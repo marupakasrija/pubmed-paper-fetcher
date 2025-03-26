@@ -152,3 +152,5 @@ The Python implementation uses:
 - **Functional Components**: Pure functions for data transformation steps
 - **Error Handling**: Robust exception handling throughout the codebase
 - **Logging**: Detailed logging for debugging and monitoring
+
+### Report Document available at - (https://docs.google.com/document/d/1_Irma1DhyIuqMwpJiORkZIEOsJ07d1uzAg2CW5-ygVw/edit?usp=sharing)
