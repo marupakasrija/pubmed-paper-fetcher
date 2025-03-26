@@ -35,7 +35,7 @@ Follow these steps to set up and run the tool:
 
 1. Clone the repository:
    ```shell
-   git clone https://github.com/your-repo/pubmed-paper-fetcher.git
+   git clone https://github.com/marupakasrija/pubmed-paper-fetcher.git
    cd pubmed-paper-fetcher
    ```
 
