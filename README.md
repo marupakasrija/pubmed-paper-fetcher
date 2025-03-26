@@ -15,6 +15,19 @@ The intersection of academic and industrial research is crucial for understandin
 
 Manually identifying such papers is time-consuming and error-prone. This tool automates the process, allowing researchers, analysts, and industry professionals to quickly gather relevant data.
 
+## Project Structure
+
+pubmed-paper-fetcher/
+├── pyproject.toml              # Poetry configuration and dependencies
+├── README.md                   # Project documentation
+├── pubmed_paper_fetcher/       # Main package directory
+│   ├── __init__.py             # Package initialization
+│   ├── fetcher.py              # Core functionality for fetching and processing papers
+│   └── cli.py                  # Command-line interface implementation
+└── tests/                      # Test directory
+    └── test_fetcher.py         # Tests for the fetcher module
+
+
 ## Prerequisites
 
 Before using the tool, ensure you have the following dependencies installed:

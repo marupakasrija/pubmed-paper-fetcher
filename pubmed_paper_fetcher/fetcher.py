@@ -8,14 +8,14 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 import pandas as pd
 from Bio import Entrez
 
-# Configure logging
+
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 
 
-Entrez.email = "sriworkshere@gmail.com"  # type: ignore
+Entrez.email = "sriworkshere@gmail.com"  
 
 
 
@@ -64,7 +64,7 @@ class Paper:
 class PubMedFetcher:
     """Fetches and processes papers from PubMed."""
 
-    # Keywords that indicate academic affiliations
+    
     ACADEMIC_KEYWORDS = {
         "university",
         "college",
@@ -79,7 +79,7 @@ class PubMedFetcher:
         "faculty",
     }
 
-    # Keywords that indicate pharmaceutical/biotech companies
+    
     COMPANY_KEYWORDS = {
         "pharma",
         "biotech",
@@ -97,7 +97,7 @@ class PubMedFetcher:
         "sa",
     }
 
-    # Email pattern for extraction
+    
     EMAIL_PATTERN = re.compile(r"[\w\.-]+@[\w\.-]+\.\w+")
 
     def __init__(self, debug: bool = False):
@@ -178,13 +178,13 @@ class PubMedFetcher:
             article_data = article["MedlineCitation"]["Article"]
             pubmed_id = article["MedlineCitation"]["PMID"]
 
-            # Extract title
+            
             title = article_data.get("ArticleTitle", "")
 
-            # Extract publication date
+            
             pub_date = self._extract_publication_date(article_data)
 
-            # Extract authors
+            
             authors = self._extract_authors(article_data)
 
             return Paper(
@@ -210,7 +210,7 @@ class PubMedFetcher:
             ):
                 pub_date = article_data["Journal"]["JournalIssue"]["PubDate"]
 
-                # Handle different date formats
+                
                 if "Year" in pub_date:
                     year = pub_date.get("Year", "")
                     month = pub_date.get("Month", "")
@@ -225,7 +225,7 @@ class PubMedFetcher:
                 elif "MedlineDate" in pub_date:
                     return pub_date["MedlineDate"]
 
-            # Fallback to ArticleDate if available
+            
             if "ArticleDate" in article_data and article_data["ArticleDate"]:
                 article_date = article_data["ArticleDate"][0]
                 year = article_date.get("Year", "")
@@ -249,7 +249,7 @@ class PubMedFetcher:
             if "LastName" not in author_data and "CollectiveName" not in author_data:
                 continue
 
-            # Extract author name
+            
             if "CollectiveName" in author_data:
                 name = author_data["CollectiveName"]
             else:
@@ -257,18 +257,18 @@ class PubMedFetcher:
                 fore_name = author_data.get("ForeName", "")
                 name = f"{last_name}, {fore_name}" if fore_name else last_name
 
-            # Extract affiliation
+            
             affiliation = self._extract_affiliation(author_data)
 
-            # Extract email
+            
             email = self._extract_email(author_data, affiliation)
 
-            # Check if corresponding author
+            
             is_corresponding = False
             if "EqualContrib" in author_data and author_data["EqualContrib"] == "Y":
                 is_corresponding = True
 
-            # Check if non-academic and extract company name
+            
             is_non_academic, company = self._check_non_academic(affiliation)
 
             authors.append(
@@ -298,13 +298,13 @@ class PubMedFetcher:
         self, author_data: Dict[str, Any], affiliation: Optional[str]
     ) -> Optional[str]:
         """Extract email from author data or affiliation text."""
-        # Try to find email in author data
+        
         if "Identifier" in author_data:
             for identifier in author_data["Identifier"]:
                 if identifier.attributes.get("Source") == "Email":
                     return identifier
 
-        # Try to extract email from affiliation text
+        
         if affiliation:
             email_match = self.EMAIL_PATTERN.search(affiliation)
             if email_match:
@@ -329,24 +329,22 @@ class PubMedFetcher:
 
         affiliation_lower = affiliation.lower()
 
-        # Check for academic keywords
+        
         for keyword in self.ACADEMIC_KEYWORDS:
             if keyword in affiliation_lower:
                 return False, None
 
-        # Check for company keywords
+        
         for keyword in self.COMPANY_KEYWORDS:
             if keyword in affiliation_lower:
-                # Try to extract company name
-                # This is a simple heuristic - in a real implementation,
-                # you might want to use NER or more sophisticated techniques
+                
                 words = affiliation.split(",")
                 for word in words:
                     word = word.strip()
                     if any(kw in word.lower() for kw in self.COMPANY_KEYWORDS):
                         return True, word
 
-                # If we can't extract a specific company name, return the full affiliation
+                
                 return True, affiliation
 
         return False, None
@@ -395,7 +393,7 @@ class PubMedFetcher:
         """
         logger.info(f"Fetching papers for query: {query}")
 
-        # Search for papers
+        
         pubmed_ids = self.search_papers(query, max_results)
 
         if not pubmed_ids:
@@ -411,10 +409,10 @@ class PubMedFetcher:
                 ]
             )
 
-        # Fetch paper details
+        
         papers = self.fetch_paper_details(pubmed_ids)
 
-        # Convert to DataFrame
+        
         df = self.papers_to_dataframe(papers)
 
         logger.info(f"Found {len(df)} papers with non-academic authors")
