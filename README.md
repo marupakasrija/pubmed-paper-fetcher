@@ -153,7 +153,7 @@ The Python implementation uses:
 - **Error Handling**: Robust exception handling throughout the codebase
 - **Logging**: Detailed logging for debugging and monitoring
 
-# PubMed Paper Fetcher
+# An Easy approach developed only for you!
 
 A Python package to fetch research papers from **PubMed** with ease.
 
