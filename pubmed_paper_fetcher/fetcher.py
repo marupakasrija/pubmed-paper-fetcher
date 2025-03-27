@@ -1,13 +1,10 @@
 """Core functionality for fetching and processing PubMed papers."""
-
 import logging
 import re
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Set, Tuple
-
 import pandas as pd
 from Bio import Entrez
-
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
@@ -17,12 +14,9 @@ logger = logging.getLogger(__name__)
 
 Entrez.email = "sriworkshere@gmail.com"  
 
-
-
 @dataclass
 class PaperAuthor:
     """Represents an author of a paper with their affiliation information."""
-
     name: str
     affiliation: Optional[str] = None
     email: Optional[str] = None
@@ -30,11 +24,9 @@ class PaperAuthor:
     is_non_academic: bool = False
     company: Optional[str] = None
 
-
 @dataclass
 class Paper:
     """Represents a research paper with its metadata."""
-
     pubmed_id: str
     title: str
     publication_date: str
@@ -63,8 +55,6 @@ class Paper:
 
 class PubMedFetcher:
     """Fetches and processes papers from PubMed."""
-
-    
     ACADEMIC_KEYWORDS = {
         "university",
         "college",

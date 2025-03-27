@@ -153,4 +153,45 @@ The Python implementation uses:
 - **Error Handling**: Robust exception handling throughout the codebase
 - **Logging**: Detailed logging for debugging and monitoring
 
+# PubMed Paper Fetcher
+
+A Python package to fetch research papers from **PubMed** with ease.
+
+## Installation
+Since the package is hosted on **TestPyPI**, install it using:
+
+```bash
+pip install -i https://test.pypi.org/simple/ pubmed-paper-fetcher-sriworkshere
+```
+
+## Usage
+
+### 1. Import the package
+```python
+from pubmed_paper_fetcher import fetch_paper
+```
+
+### 2. Fetch a paper by keyword
+```python
+paper = fetch_paper("Deep Learning in Medical Imaging")
+print(paper)
+```
+
+### 3. Fetch multiple papers
+```python
+papers = fetch_paper(["Neural Networks", "AI in Healthcare"])
+for p in papers:
+    print(p)
+```
+
+## Features
+✅ Fetch papers from **PubMed**  
+✅ Retrieve metadata (title, authors, abstract, etc.)  
+✅ Support for multiple queries  
+
+## Who Can Use This?
+- **Researchers**: Quickly find relevant papers.  
+- **Students**: Get references for assignments.  
+- **Developers**: Build research-based applications.  
+
 ### Report Document available at - (https://docs.google.com/document/d/1_Irma1DhyIuqMwpJiORkZIEOsJ07d1uzAg2CW5-ygVw/edit?usp=sharing)
