@@ -194,4 +194,4 @@ for p in papers:
 - **Students**: Get references for assignments.  
 - **Developers**: Build research-based applications.  
 
-### Report Document available at - (https://docs.google.com/document/d/1_Irma1DhyIuqMwpJiORkZIEOsJ07d1uzAg2CW5-ygVw/edit?usp=sharing)
+### Report Document available at - [Google Docs](https://docs.google.com/document/d/1_Irma1DhyIuqMwpJiORkZIEOsJ07d1uzAg2CW5-ygVw/edit?usp=sharing)
